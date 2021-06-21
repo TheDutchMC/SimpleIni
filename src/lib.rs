@@ -241,6 +241,20 @@ impl Ini {
         None
     }
 
+    /// Get a mutable reference to an IniSection by name from the Ini instance
+    ///
+    /// # Option
+    /// Returns None when no IniSection exists for the provided name
+    pub fn get_section_mut<K>(&mut self, name: K) -> Option<&mut IniSection> where K: AsRef<str> {
+        for section in &mut self.sections {
+            if section.name.eq(name.as_ref()) {
+                return Some(section)
+            }
+        }
+
+        None
+    }
+
     /// Get a global value from the Ini instance
     ///
     /// # Option
