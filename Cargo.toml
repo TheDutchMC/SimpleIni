@@ -1,0 +1,17 @@
+[package]
+name = "simpleini"
+version = "0.1.0"
+authors = ["Tobias de Bruijn <t.debruijn@array21.dev>"]
+edition = "2018"
+repository = "https://github.com/TheDutchMC/SimpleIni/"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+keywords = ["ini", "config", "configuration", "parser"]
+categories = ["parser-implementations"]
+homepage = "https://github.com/TheDutchMC/SimpleIni"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+regex = "1.5.4"
+lazy_static = "1.4.0"
