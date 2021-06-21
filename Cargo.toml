@@ -9,6 +9,7 @@ readme = "README.md"
 keywords = ["ini", "config", "configuration", "parser"]
 categories = ["parser-implementations"]
 homepage = "https://github.com/TheDutchMC/SimpleIni"
+description = "SimpleIni is a very simple crate to parse and write with the INI format"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
