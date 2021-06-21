@@ -2,7 +2,7 @@
 SimpleIni is a very simple crate to parse and write with the [INI format](https://en.wikipedia.org/wiki/INI_file)
 
 ## Licence
-SimpleIni is licenced under either the MIT licence, or the Apache-2 licence, at your discretion.
+SimpleIni is licenced under either the [MIT licence](https://github.com/TheDutchMC/SimpleIni/blob/master/LICENCE-MIT.md), or the [Apache-2 licence](https://github.com/TheDutchMC/SimpleIni/blob/master/LICENCE-APACHE.md), at your discretion.
 
 ## Examples
 **Parse an INI file**
