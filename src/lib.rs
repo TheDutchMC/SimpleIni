@@ -62,7 +62,7 @@ use lazy_static::lazy_static;
 
 lazy_static! {
     static ref SECTION_REGEX: Regex = Regex::new(r#"\[(.*)\]"#).unwrap();
-    static ref KEY_VALUE_REGEX: Regex = Regex::new(r#"(.*)=(.*)"#).unwrap();
+    static ref KEY_VALUE_REGEX: Regex = Regex::new(r#"^([^=]+)=(.*)(.*)"#).unwrap();
 }
 
 /// A `Result` alias where the `Err` case is `simpleini::IniError`
@@ -350,15 +350,35 @@ mod test {
     }
 
     #[test]
+    fn set_replace() {
+        let mut ini = Ini::new();
+        ini.set("foo", "bar");
+        ini.set("foo", "baz");
+
+        let serialized = ini.serialize().unwrap();
+        assert_eq!(&serialized, "foo=baz\n");
+    }
+
+    #[test]
     fn serialize_to_str() {
         let ini = "some_global=VALUE\n\n[A]\nsome_section_variable=OTHER_VALUE\n";
 
         let parsed = Ini::deserialize(ini).unwrap();
-        println!("{:?}", parsed);
         let serialized = parsed.serialize().unwrap();
 
-        println!("{}", serialized);
         assert_eq!(serialized, ini);
+    }
+
+    #[test]
+    fn test_value_with_equals() {
+        let mut ini = Ini::new();
+        ini.set("foo", "'bar=baz'");
+
+        let serialized = ini.serialize().unwrap();
+        assert_eq!(&serialized, "foo='bar=baz'\n");
+
+        let deserialized = Ini::deserialize(&serialized).expect("Failed to deserialize");
+        assert_eq!(deserialized.get("foo").expect("Missing foo"), "'bar=baz'")
     }
 
     #[test]
